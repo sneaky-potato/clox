@@ -351,7 +351,6 @@ static void parsePrecedence(Precedence precedence) {
 
     bool canAssign = precedence <= PREC_ASSIGNMENT;
     prefixRule(canAssign);
-    prefixRule();
 
     while (precedence <= getRule(parser.current.type)->precedence) {
         advance();
@@ -361,7 +360,6 @@ static void parsePrecedence(Precedence precedence) {
 
     if (canAssign && match(TOKEN_EQUAL)) {
         error("Invalid assignment target");
-        infixRule();
     }
 }
 
